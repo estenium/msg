@@ -9,6 +9,7 @@ const express_1 = __importDefault(require("express"));
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
 const logger_1 = __importDefault(require("./helpers/logger"));
 const msg_1 = __importDefault(require("./routes/msg"));
+const telegram_1 = require("./lib/telegram");
 const API_PATH = `/api/v1`;
 const PORT = process.env.PORT || 3000;
 let httpServer = null;
@@ -67,6 +68,7 @@ const startServer = (app) => {
 const setupShutdownHandlers = (server) => {
     const shutdown = async () => {
         logger_1.default.info('Shutting down server...');
+        await (0, telegram_1.disconnectTelegramClient)();
         if (server) {
             await new Promise((resolve) => {
                 server.close(() => {
