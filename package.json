@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "main": "build/server.js",
   "scripts": {
-    "start": "node build/server.js",
+    "start": "nodemon --exec ts-node src/server.ts",
     "build": "rimraf ./build && npx tsc"
   },
   "keywords": [],
